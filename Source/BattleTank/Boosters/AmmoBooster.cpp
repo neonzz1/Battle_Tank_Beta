@@ -2,6 +2,8 @@
 
 
 #include "AmmoBooster.h"
+#include "BattleTank/Pawns/TankBase.h"
+
 
 // Sets default values
 AAmmoBooster::AAmmoBooster()
@@ -21,6 +23,26 @@ void AAmmoBooster::BeginPlay()
 
 	
 	
+}
+
+void AAmmoBooster::NotifyActorBeginOverlap(AActor* OtherActor)
+{
+	ATankBase* Tank = Cast<ATankBase>(GetWorld()->GetFirstPlayerController()->GetPawn());
+
+	if (OtherActor == Tank)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Ammo Overlap %s"), *Tank->GetName());
+	}
+}
+
+void AAmmoBooster::NotifyActorEndOverlap(AActor* OtherActor)
+{
+	ATankBase* Tank = Cast<ATankBase>(GetWorld()->GetFirstPlayerController()->GetPawn());
+
+	if (OtherActor == Tank)
+	{
+		Destroy();
+	}
 }
 
 // Called every frame

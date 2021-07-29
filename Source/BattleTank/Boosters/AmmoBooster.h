@@ -25,7 +25,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
-	TSubClassOf<AAmmoBooster> AmmoBoosterBlueprint;
+	TSubclassOf<AAmmoBooster> AmmoBoosterBlueprint;
 
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 	virtual void NotifyActorEndOverlap(AActor* OtherActor) override;
